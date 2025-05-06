@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de Abarrotes</title>
+  <script src="https://unpkg.com/@ericblade/quagga2@1.2.6/dist/quagga.min.js"></script>
+  <style>
+    :root {
+      --primary: #4CAF50;
+      --secondary: #f9f9f9;
+      --accent: #ffffff;
+      --text: #333;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--secondary);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: var(--primary);
+      color: var(--accent);
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    main {
+      padding: 1rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    button, input, select {
+      padding: 0.6rem;
+      margin: 0.5rem 0;
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: var(--primary);
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .form-section, .scanner, .manual-input, .table-section {
+      background-color: var(--accent);
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    #video {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.6rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #eee;
+    }
+
+    .actions button {
+      width: auto;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>Tienda de Abarrotes</header>
+  <main>
+    <button onclick="mostrarCamara()">📷 Escanear con cámara</button>
+    <button onclick="mostrarManual()">✍️ Ingresar código manual</button>
+
+    <div class="manual-input" id="manual-input" style="display:none;">
+      <input type="text" id="codigo-manual" placeholder="Escribe el código de barras">
+      <button onclick="buscarCodigoManual()">Buscar</button>
+    </div>
+
+    <div class="scanner" id="video-area" style="display:none;">
+      <div id="video"></div>
+    </div>
+
+    <div id="result"></div>
+
+    <div class="form-section" id="form" style="display:none;">
+      <h3 id="form-title">Añadir producto</h3>
+      <input type="text" id="nombre" placeholder="Nombre del producto">
+      <input type="number" id="precio" placeholder="Precio">
+
+      <select id="tipo" onchange="mostrarUnidad()">
+        <option value="">¿Es líquido?</option>
+        <option value="liquido">Sí (Litros)</option>
+        <option value="solido">No (Kilogramos)</option>
+      </select>
+
+      <input type="number" id="cantidad" placeholder="Cantidad" style="display:none;">
+
+      <button onclick="guardarProducto()">Guardar</button>
+    </div>
+
+    <button onclick="mostrarTabla()">📦 Ver todos los productos</button>
+    <div class="table-section" id="tabla-productos" style="display:none;">
+      <h3>Lista de Productos</h3>
+      <input type="text" id="busqueda-nombre" placeholder="Buscar por nombre..." oninput="filtrarPorNombre()">
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Contenido</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-body"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    // (Aquí va el mismo script que ya tienes, sin cambios en la lógica, sólo con estilos mejorados)
+  </script>
+</body>
+</html>
